@@ -1,0 +1,1004 @@
+@extends('frontend.main-master')
+@section('content')
+    <div class="body-content outer-top-xs" id="top-banner-and-menu">
+        <div class="container">
+            <div class="row">
+                <!-- ============================================== SIDEBAR ============================================== -->
+                <!-- ============================================== SIDEBAR : END ============================================== -->
+
+                <!-- ============================================== CONTENT ============================================== -->
+                <div class="col-xs-12 col-sm-12 col-md-12 homebanner-holder">
+                    <!-- ========================================== SECTION – HERO ========================================= -->
+                     <div class="row">
+                        <div class="col-sm-9 col-md-9 col-xs-12">
+                            <div id="hero" style="margin-bottom: 10px">
+                                <div id="owl-main" class="owl-carousel owl-inner-nav owl-ui-sm">
+                                    @foreach ($sliders as $slider)
+                                        <div class="item"
+                                            style="background-image: url({{ asset($slider->slider_img) }});">
+                                            @if ($slider->title != null)
+                                                <div class="container-fluid">
+                                                    <div class="caption bg-color vertical-center text-left">
+                                                        <div class="big-text fadeInDown-1">{{ $slider->title }}</div>
+                                                        <div class="slider-header fadeInDown-1">{{ $slider->description }}
+                                                        </div>
+                                                        <div class="button-holder fadeInDown-3"> <a
+                                                                href="index.php?page=single-product"
+                                                                class="btn-lg btn btn-uppercase btn-primary shop-now-button">Shop
+                                                                Now</a> </div>
+                                                    </div>
+                                                    <!-- /.caption -->
+                                                </div>
+                                            @else
+                                                {{-- jika judul sama dengan null atau tidakada maka akan kosong tidak akan ada yg ditampilkan --}}
+                                            @endif
+                                            <!-- /.container-fluid -->
+                                        </div>
+                                        <!-- /.item -->
+                                    @endforeach
+                                </div>
+                                <!-- /.owl-carousel -->
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-6" style="padding-bottom: 10px">
+                            <div class="wide-banner cnt-strip" style="padding-top: 10px">
+                                <div class="image"> <img class="img-responsive"
+                                        src="{{ asset('frontend/assets/images/banners/home-banner2.jpg') }}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-6" style="padding-bottom: 10px">
+                            <div class="wide-banner cnt-strip" style="padding-top: 10px">
+                                <div class="image"> <img class="img-responsive"
+                                        src="{{ asset('frontend/assets/images/banners/home-banner2.jpg') }}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ========================================= SECTION – HERO : END ========================================= -->
+
+                    <!-- ============================================== INFO BOXES ============================================== -->
+                    <div class="info-boxes wow fadeInUp">
+                        <div class="info-boxes-inner">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-4 col-lg-4">
+                                    <div class="info-box">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <i class="fa fa-truck" style="color: #FFFF; font-size: 20px"
+                                                    aria-hidden="true"></i>
+                                                <h6 class="info-box-heading green">Pengiriman Cepat</h6>
+                                            </div>
+                                        </div>
+                                        <h6 class="text">Kurir pengiriman yang handal</h6>
+                                    </div>
+                                </div>
+                                <!-- .col -->
+
+                                <div class="hidden-md col-sm-3 col-lg-4">
+                                    <div class="info-box">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <i class="fa fa-check" style="color: #FFFF; font-size: 20px"
+                                                    aria-hidden="true"></i>
+                                                <h6 class="info-box-heading green">Kualitas Terjamin</h6>
+                                            </div>
+                                        </div>
+                                        <h6 class="text">3 Bulan garansi produk</h6>
+                                    </div>
+                                </div>
+                                <!-- .col -->
+
+                                <div class="col-md-6 col-sm-3 col-lg-4">
+                                    <div class="info-box">
+                                        <div class="row">
+                                            <div class="col-xs-12">
+                                                <i class="fa fa-money" style="color: #FFFF; font-size: 20px"
+                                                    aria-hidden="true"></i>
+                                                <h6 class="info-box-heading green">Pembayaran Mudah</h6>
+                                            </div>
+                                        </div>
+                                        <h6 class="text">Bisa Cash On Delivery</h6>
+                                    </div>
+                                </div>
+                                <!-- .col -->
+                            </div>
+                            <!-- /.row -->
+                        </div>
+                        <!-- /.info-boxes-inner -->
+                    </div>
+                    <!-- /.info-boxes -->
+                    <!-- ============================================== INFO BOXES : END ============================================== -->
+                    <!-- ============================================== SCROLL TABS ============================================== -->
+                    <div id="product-tabs-slider" class="scroll-tabs outer-top-vs wow fadeInUp">
+                        <div class="more-info-tab clearfix ">
+                            <h3 class="new-product-title pull-left">Produk Kami</h3>
+                            <ul class="nav nav-tabs nav-tab-line pull-right" id="new-products-1">
+                                <li class="active">
+                                    <a data-transition-type="backSlide" href="#all" data-toggle="tab">Semua</a>
+                                </li>
+                                @foreach ($categories as $category)
+                                    <li>
+                                        <a data-transition-type="backSlide" href="#category{{ $category->id }}"
+                                            data-toggle="tab">
+                                            {{ $category->category_name }}
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                            <!-- /.nav-tabs -->
+                        </div>
+                        <div class="tab-content outer-top-xs">
+                            <div class="tab-pane in active" id="all">
+                                <div class="product-slider">
+                                    <div class="owl-carousel home-owl-carousel custom-carousel owl-theme" data-item="4">
+
+                                        @foreach ($products as $product)
+                                            <div class="item item-carousel">
+                                                <div class="products">
+                                                    <div class="product">
+                                                        <div class="product-image">
+                                                            <div class="image">
+                                                                <a href="#">
+                                                                    <img src="{{ asset($product->product_thumbnail) }}">
+                                                                </a>
+                                                            </div>
+                                                            <!-- /.image -->
+                                                            <div>
+                                                                {{-- syntak php diskon --}}
+                                                                @php
+                                                                    $amount = $product->product_price - $product->product_discount;
+                                                                    $discount = ($amount / $product->product_price) * 100;
+                                                                @endphp
+
+                                                                @if ($product->product_discount != null)
+                                                                    <div class="tag hot">
+                                                                        <span>{{ round($discount) }}%</span>
+                                                                    </div>
+                                                                @else
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                        <!-- /.product-image -->
+
+                                                        <div class="product-info text-left">
+                                                            <h3 class="name">
+                                                                <a href="#">{{ $product->product_name }}</a>
+                                                            </h3>
+                                                            <div class="row">
+                                                                <div class=" ms-10">
+                                                                    <div class="row">
+                                                                        @php
+                                                                            $reviews = App\Models\Review::where('product_id', $product->id)->max('rating');
+                                                                        @endphp
+                                                                        <div class="col-sm-8" style="padding-left: 30px;">
+                                                                            @if ($reviews == 0)
+                                                                                <span class="fa fa-star"></span>
+                                                                                <span class="fa fa-star"></span>
+                                                                                <span class="fa fa-star"></span>
+                                                                                <span class="fa fa-star"></span>
+                                                                                <span class="fa fa-star"></span>
+                                                                            @elseif ($reviews == 1)
+                                                                                <span class="fa fa-star checked"
+                                                                                    style="color: yellow"></span>
+                                                                                <span class="fa fa-star"></span>
+                                                                                <span class="fa fa-star"></span>
+                                                                                <span class="fa fa-star"></span>
+                                                                                <span class="fa fa-star"></span>
+                                                                            @elseif ($reviews == 2)
+                                                                                <span class="fa fa-star checked"
+                                                                                    style="color: yellow"></span>
+                                                                                <span class="fa fa-star checked"
+                                                                                    style="color: yellow"></span>
+                                                                                <span class="fa fa-star"></span>
+                                                                                <span class="fa fa-star"></span>
+                                                                                <span class="fa fa-star"></span>
+                                                                            @elseif ($reviews == 3)
+                                                                                <span class="fa fa-star checked"
+                                                                                    style="color: yellow"></span>
+                                                                                <span class="fa fa-star checked"
+                                                                                    style="color: yellow"></span>
+                                                                                <span class="fa fa-star checked"
+                                                                                    style="color: yellow"></span>
+                                                                                <span class="fa fa-star"></span>
+                                                                                <span class="fa fa-star"></span>
+                                                                            @elseif ($reviews == 4)
+                                                                                <span class="fa fa-star checked"
+                                                                                    style="color: yellow"></span>
+                                                                                <span class="fa fa-star checked"
+                                                                                    style="color: yellow"></span>
+                                                                                <span class="fa fa-star checked"
+                                                                                    style="color: yellow"></span>
+                                                                                <span class="fa fa-star checked"
+                                                                                    style="color: yellow"></span>
+                                                                                <span class="fa fa-star"></span>
+                                                                            @elseif ($reviews == 5)
+                                                                                <span class="fa fa-star checked"
+                                                                                    style="color: yellow"></span>
+                                                                                <span class="fa fa-star checked"
+                                                                                    style="color: yellow"></span>
+                                                                                <span class="fa fa-star checked"
+                                                                                    style="color: yellow"></span>
+                                                                                <span class="fa fa-star checked"
+                                                                                    style="color: yellow"></span>
+                                                                                <span class="fa fa-star checked"
+                                                                                    style="color: yellow"></span>
+                                                                            @endif
+                                                                        </div>
+                                                                        <div class="col-sm-8">
+
+                                                                            <div class="reviews">
+                                                                                <a href="#" class="lnk"></a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div><!-- /.row -->
+                                                                </div>
+                                                            </div>
+
+                                                            @if ($product->product_discount == null)
+                                                                <div class="product-price">
+                                                                    <span class="price">
+                                                                        Rp{{ number_format($product->product_price, 0, '', '.') }}
+                                                                    </span>
+                                                                </div>
+                                                            @else
+                                                                <div class="product-price">
+                                                                    <span class="price">
+                                                                        Rp{{ number_format($product->product_discount, 0, '', '.') }}
+                                                                    </span>
+                                                                    <span class="price-before-discount">
+                                                                        Rp{{ number_format($product->product_price, 0, '', '.') }}
+                                                                    </span>
+                                                                </div>
+                                                            @endif
+                                                        </div>
+                                                        <!-- /.product-info -->
+                                                        <div class="cart clearfix animate-effect">
+                                                            <div class="action">
+                                                                <ul class="list-unstyled">
+                                                                    <li class="add-cart-button btn-group">
+                                                                        <button data-toggle="modal"
+                                                                            class="btn btn-primary icon" type="button"
+                                                                            title="Keranjang" data-target="#product-modal"
+                                                                            id="{{ $product->id }}"
+                                                                            onclick="productView(this.id)">
+                                                                            <i class="fa fa-shopping-cart"></i>
+                                                                        </button>
+                                                                        <button class="btn btn-primary cart-btn"
+                                                                            type="button">Keranjang</button>
+                                                                    </li>
+                                                                    <button data-toggle="tooltip"
+                                                                        class="btn btn-primary icon" type="button"
+                                                                        id="{{ $product->id }}"
+                                                                        onclick="addToWishList(this.id)" title="WishList">
+                                                                        <i class="icon fa fa-heart"></i>
+                                                                    </button>
+                                                                    <li class="lnk">
+                                                                        <a data-toggle="tooltip" class="add-to-cart"
+                                                                            href="{{ url('product/details/' . $product->id . '/' . $product->product_tags) }}"
+                                                                            title="Detail Produk">
+                                                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <!-- /.action -->
+                                                        </div>
+                                                        <!-- /.cart -->
+                                                    </div>
+                                                    <!-- /.product -->
+                                                </div>
+                                                <!-- /.products -->
+                                            </div>
+                                            <!-- /.item -->
+                                        @endforeach
+                                    </div>
+                                    <!-- /.home-owl-carousel -->
+                                </div>
+                                <!-- /.product-slider -->
+                            </div>
+
+                            {{-- dinamis tab --}}
+                            @foreach ($categories as $category)
+                                <div class="tab-pane" id="category{{ $category->id }}">
+                                    <div class="product-slider">
+                                        <div class="owl-carousel home-owl-carousel custom-carousel owl-theme">
+
+                                            {{-- data category --}}
+                                            @php
+                                                $products = App\Models\Product::where('category_id', $category->id)
+                                                    ->orderBy('id', 'DESC')
+                                                    ->get();
+                                            @endphp
+
+                                            @forelse($products as $product)
+                                                <div class="item item-carousel">
+                                                    <div class="products">
+                                                        <div class="product">
+                                                            <div class="product-image">
+                                                                <div class="image">
+                                                                    <a href="">
+                                                                        <img
+                                                                            src="{{ asset($product->product_thumbnail) }}">
+                                                                    </a>
+                                                                </div>
+                                                                <!-- /.image -->
+                                                                <div>
+                                                                    {{-- syntak php diskon --}}
+                                                                    @php
+                                                                        $amount = $product->product_price - $product->product_discount;
+                                                                        $discount = ($amount / $product->product_price) * 100;
+                                                                    @endphp
+
+                                                                    @if ($product->product_discount != null)
+                                                                        <div class="tag hot">
+                                                                            <span>{{ round($discount) }}%</span>
+                                                                        </div>
+                                                                    @else
+                                                                    @endif
+                                                                </div>
+                                                            </div>
+                                                            <!-- /.product-image -->
+
+                                                            <div class="product-info text-left">
+                                                                <h3 class="name">
+                                                                    <a
+                                                                        href="{{ url('product/details' . $product->id . '/' . $product->product_slug) }}">
+                                                                        {{ $product->product_name }}
+                                                                    </a>
+                                                                </h3>
+                                                                <div class="row">
+                                                                    <div class=" m-t-20 ms-10">
+                                                                        <div class="row">
+                                                                            @php
+                                                                                $reviews = App\Models\Review::where('product_id', $product->id)->max('rating');
+                                                                            @endphp
+                                                                            <div class="col-sm-8"
+                                                                                style="padding-left: 30px;">
+                                                                                @if ($reviews == 0)
+                                                                                    <span class="fa fa-star"></span>
+                                                                                    <span class="fa fa-star"></span>
+                                                                                    <span class="fa fa-star"></span>
+                                                                                    <span class="fa fa-star"></span>
+                                                                                    <span class="fa fa-star"></span>
+                                                                                @elseif ($reviews == 1)
+                                                                                    <span class="fa fa-star checked"
+                                                                                        style="color: yellow"></span>
+                                                                                    <span class="fa fa-star"></span>
+                                                                                    <span class="fa fa-star"></span>
+                                                                                    <span class="fa fa-star"></span>
+                                                                                    <span class="fa fa-star"></span>
+                                                                                @elseif ($reviews == 2)
+                                                                                    <span class="fa fa-star checked"
+                                                                                        style="color: yellow"></span>
+                                                                                    <span class="fa fa-star checked"
+                                                                                        style="color: yellow"></span>
+                                                                                    <span class="fa fa-star"></span>
+                                                                                    <span class="fa fa-star"></span>
+                                                                                    <span class="fa fa-star"></span>
+                                                                                @elseif ($reviews == 3)
+                                                                                    <span class="fa fa-star checked"
+                                                                                        style="color: yellow"></span>
+                                                                                    <span class="fa fa-star checked"
+                                                                                        style="color: yellow"></span>
+                                                                                    <span class="fa fa-star checked"
+                                                                                        style="color: yellow"></span>
+                                                                                    <span class="fa fa-star"></span>
+                                                                                    <span class="fa fa-star"></span>
+                                                                                @elseif ($reviews == 4)
+                                                                                    <span class="fa fa-star checked"
+                                                                                        style="color: yellow"></span>
+                                                                                    <span class="fa fa-star checked"
+                                                                                        style="color: yellow"></span>
+                                                                                    <span class="fa fa-star checked"
+                                                                                        style="color: yellow"></span>
+                                                                                    <span class="fa fa-star checked"
+                                                                                        style="color: yellow"></span>
+                                                                                    <span class="fa fa-star"></span>
+                                                                                @elseif ($reviews == 5)
+                                                                                    <span class="fa fa-star checked"
+                                                                                        style="color: yellow"></span>
+                                                                                    <span class="fa fa-star checked"
+                                                                                        style="color: yellow"></span>
+                                                                                    <span class="fa fa-star checked"
+                                                                                        style="color: yellow"></span>
+                                                                                    <span class="fa fa-star checked"
+                                                                                        style="color: yellow"></span>
+                                                                                    <span class="fa fa-star checked"
+                                                                                        style="color: yellow"></span>
+                                                                                @endif
+                                                                            </div>
+                                                                            <div class="col-sm-8">
+
+                                                                                <div class="reviews">
+                                                                                    <a href="#" class="lnk"></a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div><!-- /.row -->
+                                                                    </div>
+                                                                </div>
+
+                                                                @if ($product->product_discount == null)
+                                                                    <div class="product-price">
+                                                                        <span class="price">
+                                                                            Rp{{ number_format($product->product_price, 0, '', '.') }}
+                                                                        </span>
+                                                                    </div>
+                                                                @else
+                                                                    <div class="product-price">
+                                                                        <span class="price">
+                                                                            Rp{{ number_format($product->product_discount, 0, '', '.') }}
+                                                                        </span>
+                                                                        <span class="price-before-discount">
+                                                                            Rp{{ number_format($product->product_price, 0, '', '.') }}
+                                                                        </span>
+                                                                    </div>
+                                                                @endif
+                                                            </div>
+                                                            <!-- /.product-info -->
+                                                            <div class="cart clearfix animate-effect">
+                                                                <div class="action">
+                                                                    <ul class="list-unstyled">
+                                                                        <li class="add-cart-button btn-group">
+                                                                            <button data-toggle="tooltip"
+                                                                                class="btn btn-primary icon"
+                                                                                type="button" title="Add Cart">
+                                                                                <i class="fa fa-shopping-cart"></i>
+                                                                            </button>
+                                                                            <button class="btn btn-primary cart-btn"
+                                                                                type="button">Keranjang</button>
+                                                                        </li>
+                                                                        <button data-toggle="tooltip"
+                                                                            class="btn btn-primary icon" type="button"
+                                                                            id="{{ $product->id }}"
+                                                                            onclick="addToWishList(this.id)"
+                                                                            title="WishList">
+                                                                            <i class="icon fa fa-heart"></i>
+                                                                        </button>
+                                                                        <li class="lnk">
+                                                                            <a data-toggle="tooltip" class="add-to-cart"
+                                                                                href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}"
+                                                                                title="Detail Produk">
+                                                                                <i class="fa fa-eye"
+                                                                                    aria-hidden="true"></i>
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <!-- /.action -->
+                                                            </div>
+                                                            <!-- /.cart -->
+                                                        </div>
+                                                        <!-- /.product -->
+                                                    </div>
+                                                    <!-- /.products -->
+                                                </div>
+                                                <!-- /.item -->
+                                            @empty
+
+                                                <h5 class="text-danger">Produk tidak ditemukan</h5>
+                                            @endforelse
+                                        </div>
+                                        <!-- /.home-owl-carousel -->
+                                    </div>
+                                    <!-- /.product-slider -->
+                                </div>
+                                <!-- /.tab-pane -->
+                            @endforeach
+                        </div>
+                        <!-- /.tab-content -->
+                    </div>
+                    <!-- /.scroll-tab -->
+                    <!-- ============================================== SCROLL TABS : END ============================================== -->
+
+                    <!-- ============================================== WIDE PRODUCTS ============================================== -->
+
+                    <!-- ============================================== WIDE PRODUCTS : END ============================================== -->
+                    <!-- ============================================== FEATURED PRODUCTS ============================================== -->
+                    <section class="section featured-product wow fadeInUp">
+                        <h3 class="section-title">Produk Terbaru</h3>
+                        <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
+
+                            @foreach ($new_product as $product)
+                                <div class="item item-carousel">
+                                    <div class="products">
+                                        <div class="product">
+                                            <div class="product-image">
+                                                <div class="image">
+                                                    <a href="">
+                                                        <img src="{{ asset($product->product_thumbnail) }}">
+                                                    </a>
+                                                </div>
+                                                <!-- /.image -->
+                                                <div>
+                                                    @php
+                                                        $amount = $product->product_price - $product->product_discount;
+                                                        $discount = ($amount / $product->product_price) * 100;
+                                                    @endphp
+
+                                                    @if ($product->product_discount != null)
+                                                        <div class="tag hot">
+                                                            <span>{{ round($discount) }}%</span>
+                                                        </div>
+                                                    @else
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            <!-- /.product-image -->
+
+                                            <div class="product-info text-left">
+                                                <h3 class="name">
+                                                    <a href="detail.html">{{ $product->product_name }}</a>
+                                                </h3>
+                                                <div class="row">
+                                                    <div class="  ms-10">
+                                                        <div class="row">
+                                                            @php
+                                                                $reviews = App\Models\Review::where('product_id', $product->id)->max('rating');
+                                                            @endphp
+                                                            <div class="col-sm-8" style="padding-left: 30px;">
+                                                                @if ($reviews == 0)
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                @elseif ($reviews == 1)
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                @elseif ($reviews == 2)
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                @elseif ($reviews == 3)
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                @elseif ($reviews == 4)
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                @elseif ($reviews == 5)
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                @endif
+                                                            </div>
+                                                            <div class="col-sm-8">
+
+                                                                <div class="reviews">
+                                                                    <a href="#" class="lnk"></a>
+                                                                </div>
+                                                            </div>
+                                                        </div><!-- /.row -->
+                                                    </div>
+                                                </div>
+
+                                                @if ($product->product_discount == null)
+                                                    <div class="product-price">
+                                                        <span class="price">
+                                                            Rp{{ number_format($product->product_price, 0, '', '.') }}
+                                                        </span>
+                                                    </div>
+                                                @else
+                                                    <div class="product-price">
+                                                        <span class="price">
+                                                            Rp{{ number_format($product->product_discount, 0, '', '.') }}
+                                                        </span>
+                                                        <span class="price-before-discount">
+                                                            Rp{{ number_format($product->product_price, 0, '', '.') }}
+                                                        </span>
+                                                    </div>
+                                                @endif
+                                                <!-- /.product-price -->
+                                            </div>
+                                            <!-- /.product-info -->
+                                            <div class="cart clearfix animate-effect">
+                                                <div class="action">
+                                                    <ul class="list-unstyled">
+                                                        <li class="add-cart-button btn-group">
+                                                            <button data-toggle="modal" class="btn btn-primary icon"
+                                                                type="button" title="Keranjang"
+                                                                data-target="#product-modal" id="{{ $product->id }}"
+                                                                onclick="productView(this.id)">
+                                                                <i class="fa fa-shopping-cart"></i>
+                                                            </button>
+                                                            <button class="btn btn-primary cart-btn"
+                                                                type="button">Keranjang</button>
+                                                        </li>
+
+                                                        <button data-toggle="tooltip" class="btn btn-primary icon"
+                                                            type="button" id="{{ $product->id }}"
+                                                            onclick="addToWishList(this.id)" title="WishList">
+                                                            <i class="icon fa fa-heart"></i>
+                                                        </button>
+
+                                                        <li class="lnk">
+                                                            <a data-toggle="tooltip" class="add-to-cart"
+                                                                href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}"
+                                                                title="Detail Produk">
+                                                                <i class="fa fa-eye" aria-hidden="true"></i>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div><!-- /.cart -->
+                                        </div><!-- /.product -->
+                                    </div><!-- /.products -->
+                                </div>
+                            @endforeach
+                            <!-- /.item -->
+                        </div>
+                    </section>
+                    <!-- ============================================== FEATURED PRODUCTS : END ============================================== -->
+
+                    <!-- ============================================== FEATURED PRODUCTS ============================================== -->
+                    <section class="section featured-product wow fadeInUp">
+                        <h3 class="section-title">Produk Baru Datang</h3>
+                        <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
+
+                            @foreach ($new_arrival as $product)
+                                <div class="item item-carousel">
+                                    <div class="products">
+                                        <div class="product">
+                                            <div class="product-image">
+                                                <div class="image">
+                                                    <a href="">
+                                                        <img src="{{ asset($product->product_thumbnail) }}">
+                                                    </a>
+                                                </div>
+                                                <!-- /.image -->
+                                                <div>
+                                                    @php
+                                                        $amount = $product->product_price - $product->product_discount;
+                                                        $discount = ($amount / $product->product_price) * 100;
+                                                    @endphp
+
+                                                    @if ($product->product_discount != null)
+                                                        <div class="tag hot">
+                                                            <span>{{ round($discount) }}%</span>
+                                                        </div>
+                                                    @else
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            <!-- /.product-image -->
+
+                                            <div class="product-info text-left">
+                                                <h3 class="name">
+                                                    <a href="detail.html">{{ $product->product_name }}</a>
+                                                </h3>
+                                                <div class="row">
+                                                    <div class="ms-10">
+                                                        <div class="row">
+                                                            @php
+                                                                $reviews = App\Models\Review::where('product_id', $product->id)->max('rating');
+                                                            @endphp
+                                                            <div class="col-sm-8" style="padding-left: 30px;">
+                                                                @if ($reviews == 0)
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                @elseif ($reviews == 1)
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                @elseif ($reviews == 2)
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                @elseif ($reviews == 3)
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                @elseif ($reviews == 4)
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                @elseif ($reviews == 5)
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                @endif
+                                                            </div>
+                                                            <div class="col-sm-8">
+
+                                                                <div class="reviews">
+                                                                    <a href="#" class="lnk"></a>
+                                                                </div>
+                                                            </div>
+                                                        </div><!-- /.row -->
+                                                    </div>
+                                                </div>
+
+                                                @if ($product->product_discount == null)
+                                                    <div class="product-price">
+                                                        <span class="price">
+                                                            Rp{{ number_format($product->product_price, 0, '', '.') }}
+                                                        </span>
+                                                    </div>
+                                                @else
+                                                    <div class="product-price">
+                                                        <span class="price">
+                                                            Rp{{ number_format($product->product_discount, 0, '', '.') }}
+                                                        </span>
+                                                        <span class="price-before-discount">
+                                                            Rp{{ number_format($product->product_price, 0, '', '.') }}
+                                                        </span>
+                                                    </div>
+                                                @endif
+                                                <!-- /.product-price -->
+                                            </div>
+                                            <!-- /.product-info -->
+                                            <div class="cart clearfix animate-effect">
+                                                <div class="action">
+                                                    <ul class="list-unstyled">
+                                                        <li class="add-cart-button btn-group">
+                                                            <button data-toggle="modal" class="btn btn-primary icon"
+                                                                type="button" title="Keranjang"
+                                                                data-target="#product-modal" id="{{ $product->id }}"
+                                                                onclick="productView(this.id)">
+                                                                <i class="fa fa-shopping-cart"></i>
+                                                            </button>
+                                                            <button class="btn btn-primary cart-btn"
+                                                                type="button">Keranjang</button>
+                                                        </li>
+
+                                                        <button data-toggle="tooltip" class="btn btn-primary icon"
+                                                            type="button" id="{{ $product->id }}"
+                                                            onclick="addToWishList(this.id)" title="WishList">
+                                                            <i class="icon fa fa-heart"></i>
+                                                        </button>
+
+                                                        <li class="lnk">
+                                                            <a data-toggle="tooltip" class="add-to-cart"
+                                                                href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}"
+                                                                title="Detail Produk">
+                                                                <i class="fa fa-eye" aria-hidden="true"></i>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div><!-- /.cart -->
+                                        </div><!-- /.product -->
+                                    </div><!-- /.products -->
+                                </div>
+                            @endforeach
+                            <!-- /.item -->
+                        </div>
+                    </section>
+                    <!-- /.section -->
+                    <!-- ============================================== FEATURED PRODUCTS : END ============================================== -->
+                    <!-- ============================================== FEATURED PRODUCTS ============================================== -->
+                    <section class="section featured-product wow fadeInUp">
+                        <h3 class="section-title">Best Seller</h3>
+                        <div class="owl-carousel home-owl-carousel custom-carousel owl-theme outer-top-xs">
+
+                            @foreach ($best_seller as $product)
+                                <div class="item item-carousel">
+                                    <div class="products">
+                                        <div class="product">
+                                            <div class="product-image">
+                                                <div class="image">
+                                                    <a href="">
+                                                        <img src="{{ asset($product->product_thumbnail) }}">
+                                                    </a>
+                                                </div>
+                                                <!-- /.image -->
+                                                <div>
+                                                    @php
+                                                        $amount = $product->product_price - $product->product_discount;
+                                                        $discount = ($amount / $product->product_price) * 100;
+                                                    @endphp
+
+                                                    @if ($product->product_discount != null)
+                                                        <div class="tag hot">
+                                                            <span>{{ round($discount) }}%</span>
+                                                        </div>
+                                                    @else
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            <!-- /.product-image -->
+
+                                            <div class="product-info text-left">
+                                                <h3 class="name">
+                                                    <a href="detail.html">{{ $product->product_name }}</a>
+                                                </h3>
+                                                <div class="row">
+                                                    <div class=" ms-10">
+                                                        <div class="row">
+                                                            @php
+                                                                $reviews = App\Models\Review::where('product_id', $product->id)->max('rating');
+                                                            @endphp
+                                                            <div class="col-sm-8" style="padding-left: 30px;">
+                                                                @if ($reviews == 0)
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                @elseif ($reviews == 1)
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                @elseif ($reviews == 2)
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                @elseif ($reviews == 3)
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                @elseif ($reviews == 4)
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                    <span class="fa fa-star"></span>
+                                                                @elseif ($reviews == 5)
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                    <span class="fa fa-star checked"
+                                                                        style="color: yellow"></span>
+                                                                @endif
+                                                            </div>
+                                                            <div class="col-sm-8">
+
+                                                                <div class="reviews">
+                                                                    <a href="#" class="lnk"></a>
+                                                                </div>
+                                                            </div>
+                                                        </div><!-- /.row -->
+                                                    </div>
+                                                </div>
+
+                                                @if ($product->product_discount == null)
+                                                    <div class="product-price">
+                                                        <span class="price">
+                                                            Rp{{ number_format($product->product_price, 0, '', '.') }}
+                                                        </span>
+                                                    </div>
+                                                @else
+                                                    <div class="product-price">
+                                                        <span class="price">
+                                                            Rp{{ number_format($product->product_discount, 0, '', '.') }}
+                                                        </span>
+                                                        <span class="price-before-discount">
+                                                            Rp{{ number_format($product->product_price, 0, '', '.') }}
+                                                        </span>
+                                                    </div>
+                                                @endif
+                                                <!-- /.product-price -->
+                                            </div>
+                                            <!-- /.product-info -->
+                                            <div class="cart clearfix animate-effect">
+                                                <div class="action">
+                                                    <ul class="list-unstyled">
+                                                        <li class="add-cart-button btn-group">
+                                                            <button data-toggle="modal" class="btn btn-primary icon"
+                                                                type="button" title="Keranjang"
+                                                                data-target="#product-modal" id="{{ $product->id }}"
+                                                                onclick="productView(this.id)">
+                                                                <i class="fa fa-shopping-cart"></i>
+                                                            </button>
+                                                            <button class="btn btn-primary cart-btn"
+                                                                type="button">Keranjang</button>
+                                                        </li>
+
+                                                        <button data-toggle="tooltip" class="btn btn-primary icon"
+                                                            type="button" id="{{ $product->id }}"
+                                                            onclick="addToWishList(this.id)" title="WishList">
+                                                            <i class="icon fa fa-heart"></i>
+                                                        </button>
+
+                                                        <li class="lnk">
+                                                            <a data-toggle="tooltip" class="add-to-cart"
+                                                                href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}"
+                                                                title="Detail Produk">
+                                                                <i class="fa fa-eye" aria-hidden="true"></i>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div><!-- /.cart -->
+                                        </div><!-- /.product -->
+                                    </div><!-- /.products -->
+                                </div>
+                            @endforeach
+                            <!-- /.item -->
+                        </div>
+                    </section>
+                    <!-- /.section -->
+                    <!-- ============================================== FEATURED PRODUCTS : END ============================================== -->
+
+                </div>
+                <!-- /.homebanner-holder -->
+                <!-- ============================================== CONTENT : END ============================================== -->
+            </div>
+            <!-- /.row -->
+
+            {{-- brands --}}
+            @include('frontend.templates.brands')
+
+        </div>
+        <!-- /.container -->
+    </div>
+    <!-- /#top-banner-and-menu -->
+@endsection
