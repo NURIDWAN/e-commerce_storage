@@ -1,0 +1,52 @@
+# Laravel .gitignore
+
+# Ignore node dependencies
+/node_modules
+
+# Ignore compiled files
+/public/hot
+/public/storage
+/storage/*.key
+/storage/app/public
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+/storage/logs/*
+
+# Ignore environment files
+.env
+.env.backup
+.env.testing
+.env.local
+
+# Ignore Laravel specific files
+.phpunit.result.cache
+.phpstorm.meta.php
+Homestead.yaml
+Homestead.json
+
+# Ignore IDE and OS specific files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.DS_Store
+*.swp
+Thumbs.db
+
+# Ignore composer dependencies
+/vendor
+
+# Ignore NPM/Yarn logs
+npm-debug.log
+yarn-error.log
+pnpm-debug.log
+
+# Ignore test coverage
+coverage/
+
+# Ignore build output
+/public/mix-manifest.json
+/public/js/*.js
+/public/css/*.css
+/public/build
